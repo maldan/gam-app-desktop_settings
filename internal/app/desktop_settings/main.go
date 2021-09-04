@@ -28,7 +28,8 @@ func Start(frontFs embed.FS) {
 	restserver.Start(fmt.Sprintf("%s:%d", *host, *port), map[string]interface{}{
 		"/": restserver.VirtualFs{Root: "frontend/build/", Fs: frontFs},
 		"/api": map[string]interface{}{
-			"main": api.MainApi{},
+			"main":        api.MainApi{},
+			"application": api.ApplicationApi{},
 		},
 	})
 }
