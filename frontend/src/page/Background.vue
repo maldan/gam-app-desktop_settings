@@ -3,7 +3,12 @@
     <Header />
     <div class="item" v-for="x in list" :key="x.id">
       <div>Desktop {{ x.id + 1 }}</div>
-      <div><input type="file" /></div>
+      <div>
+        <img style="width: 320px" :src="`${$root.API_URL}/main/background?id=${x.id}`" alt="" />
+      </div>
+      <div>
+        <input @change="change($event, x.id)" :ref="`file_${x.id}`" type="file" accept="image/*" />
+      </div>
     </div>
   </div>
 </template>
@@ -11,11 +16,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Header from '../component/Header.vue';
+import { RestApi } from '../util/RestApi';
 
 export default defineComponent({
   components: { Header },
   async mounted() {},
-  methods: {},
+  methods: {
+    async change(e: any, id: number) {
+      await RestApi.main.uploadBackground(id, e.target.files[0]);
+      window.location.reload();
+    },
+  },
   data: () => {
     return {
       list: [
@@ -36,6 +47,11 @@ export default defineComponent({
 
   .item {
     display: flex;
+    align-items: center;
+
+    > div {
+      flex: 1;
+    }
   }
 }
 </style>

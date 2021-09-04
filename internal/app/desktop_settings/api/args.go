@@ -14,3 +14,8 @@ type ArgsBackupSettings struct {
 	Path  string `json:"path"`
 	Value string `json:"value"`
 }
+
+type ArgsBackground struct {
+	Id    string `json:"id"`
+	Files [][]byte
+}
