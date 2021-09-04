@@ -1,6 +1,6 @@
 {
   "name": "@maldan/gam-app-desktop_settings",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Desktop Settings",
   "main": "index.js",
   "scripts": {},
